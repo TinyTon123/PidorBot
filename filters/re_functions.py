@@ -60,3 +60,9 @@ def nu_otvet_filter(message: types.Message):
     regex: str = r"\b(?:(?:[нНnNH]+[\W_]*)+(?:[уУuUy]+[\W_]*)+)+[\W_]*$"
     result: list = re.findall(regex, message.text)
     return len(result) != 0
+
+
+def kto_otvet_filter(message: types.Message) -> bool:
+    regex: str = r"\b(?:(?:[кКkK]+[_\W]*)+(?:[тТtT]+[_\W]*)+(?:[оОoO]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(regex, message.text)
+    return len(result) != 0

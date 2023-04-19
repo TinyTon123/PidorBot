@@ -2,67 +2,67 @@ import re
 from aiogram import types
 
 
-def net_otvet_filter(message: types.Message) -> bool:
-    regex: str = r"\b(?:(?:[нНNnH]+[\W_]*)+(?:[еЕEe]+[\W_]*)+(?:[тТTt]+[\W_]*)+)+[\W_ь]*$"
-    result: list = re.findall(regex, message.text)
+def net_answer_filter(message: types.Message) -> bool:
+    net_regex: str = r"\b(?:(?:[нНNnH]+[\W_]*)+(?:[еЕEe]+[\W_]*)+(?:[тТTt]+[\W_]*)+)+[\W_ь]*$"
+    result: list = re.findall(net_regex, message.text)
     return len(result) != 0
 
 
-def nit_otvet_filter(message: types.Message) -> bool:
-    regex: str = r"\b(?:(?:[нНNnH]+[\W_]*)+(?:[иИiIl]+[\W_]*)+(?:[тТTt]+[\W_]*)+)+[\W_]*$"
-    result: list = re.findall(regex, message.text)
+def nit_answer_filter(message: types.Message) -> bool:
+    nit_regex: str = r"\b(?:(?:[нНNnH]+[\W_]*)+(?:[иИiIl]+[\W_]*)+(?:[тТTt]+[\W_]*)+)+[\W_]*$"
+    result: list = re.findall(nit_regex, message.text)
     return len(result) != 0
 
 
-def no_otvet_filter(message: types.Message) -> bool:
-    regex: str = r"\b(?:(?:[нНH]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[уУy]+[_\W]*)+|(?:[Nn]+[_\W]*)+(?:[OoоО]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(regex, message.text)
+def no_answer_filter(message: types.Message) -> bool:
+    no_regex: str = r"\b(?:(?:[нНH]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[уУy]+[_\W]*)+|(?:[Nn]+[_\W]*)+(?:[OoоО]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(no_regex, message.text)
     return len(result) != 0
 
 
-def nope_otvet_filter(message: types.Message) -> bool:
-    regex: str = r"\b(?:(?:[нНNnH]+[_\W]*)+(?:[оОOo]+[_\W]*)+(?:[уУpP]+[_\W]*)+(?:[пПeEеЕ]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(regex, message.text)
+def nope_answer_filter(message: types.Message) -> bool:
+    nope_regex: str = r"\b(?:(?:[нНNnH]+[_\W]*)+(?:[оОOo]+[_\W]*)+(?:[уУpP]+[_\W]*)+(?:[пПeEеЕ]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(nope_regex, message.text)
     return len(result) != 0
 
 
-def nein_otvet_filter(message: types.Message) -> bool:
-    regex: str = r"\b(?:(?:[нНNnH]+[_\W]*)+(?:[АаEe]+[_\W]*)+(?:[ЙйIi]+[_\W]*)+(?:[нНNnH]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(regex, message.text)
+def nein_answer_filter(message: types.Message) -> bool:
+    nein_regex: str = r"\b(?:(?:[нНNnH]+[_\W]*)+(?:[АаEe]+[_\W]*)+(?:[ЙйIi]+[_\W]*)+(?:[нНNnH]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(nein_regex, message.text)
     return len(result) != 0
 
 
-def yes_otvet_filter(message: types.Message) -> bool:
-    regex: str = r"\b(?:(?:[йЙ]*[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[сСcC]+[_\W]*)+|(?:[yY]+[_\W]*)+(?:[eEеЕ]+[_\W]*)+(?:[sS]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(regex, message.text)
+def yes_answer_filter(message: types.Message) -> bool:
+    yes_regex: str = r"\b(?:(?:[йЙ]*[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[сСcC]+[_\W]*)+|(?:[yY]+[_\W]*)+(?:[eEеЕ]+[_\W]*)+(?:[sS]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(yes_regex, message.text)
     return len(result) != 0
 
 
-def da_otvet_filter(message: types.Message) -> bool:
-    regex: str = r"^(?:(?:[дДdD]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(regex, message.text)
+def da_answer_filter(message: types.Message) -> bool:
+    da_regex: str = r"^(?:(?:[дДdD]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(da_regex, message.text)
     return len(result) != 0
 
 
-def traktorista_otvet_filter(message: types.Message) -> bool:
-    regex: str = r"\b(?:[тТtT]+[_\W]*[рРrRpP]+[_\W]*[ыЫиИiIl]+[_\W]*[сСsScC]+[_\W]*[тТtT]+[_\W]*[аАaAоОoO]+|(?<!(?:[ояуе]) )[З3](?:[_\W]*[0О]){2})+[\W_]*$"
-    result: list = re.findall(regex, message.text)
+def traktorista_answer_filter(message: types.Message) -> bool:
+    traktorista_regex: str = r"\b(?:[тТtT]+[_\W]*[рРrRpP]+[_\W]*[ыЫиИiIl]+[_\W]*[сСsScC]+[_\W]*[тТtT]+[_\W]*[аАaAоОoO]+|(?<!(?:[ояуе]) )[З3](?:[_\W]*[0О]){2})+[\W_]*$"
+    result: list = re.findall(traktorista_regex, message.text)
     return len(result) != 0
 
 
-def gde_otvet_filter(message: types.Message) -> bool:
-    regex: str = r"\b(?:(?:[gGгГ]+[\W_]*)+(?:[дДdD]+[\W_]*)+(?:[еЕeE]+[\W_]*)+)+[\W_]*$"
-    result: list = re.findall(regex, message.text)
+def gde_answer_filter(message: types.Message) -> bool:
+    gde_regex: str = r"\b(?:(?:[gGгГ]+[\W_]*)+(?:[дДdD]+[\W_]*)+(?:[еЕeE]+[\W_]*)+)+[\W_]*$"
+    result: list = re.findall(gde_regex, message.text)
     return len(result) != 0
 
 
-def nu_otvet_filter(message: types.Message):
-    regex: str = r"\b(?:(?:[нНnNH]+[\W_]*)+(?:[уУuUy]+[\W_]*)+)+[\W_]*$"
-    result: list = re.findall(regex, message.text)
+def nu_answer_filter(message: types.Message):
+    nu_regex: str = r"\b(?:(?:[нНnNH]+[\W_]*)+(?:[уУuUy]+[\W_]*)+)+[\W_]*$"
+    result: list = re.findall(nu_regex, message.text)
     return len(result) != 0
 
 
-def kto_otvet_filter(message: types.Message) -> bool:
-    regex: str = r"\b(?:(?:[кКkK]+[_\W]*)+(?:[тТtT]+[_\W]*)+(?:[оОoO]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(regex, message.text)
+def kto_answer_filter(message: types.Message) -> bool:
+    kto_regex: str = r"\b(?:(?:[кКkK]+[_\W]*)+(?:[тТtT]+[_\W]*)+(?:[оОoO]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(kto_regex, message.text)
     return len(result) != 0

@@ -15,8 +15,8 @@ config: Config = load_config()
 ggl_api_key: str = config.api_config.google_api
 
 
-@router.message(F.text, re_functions.net_otvet_filter)
-async def net_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.net_answer_filter)
+async def net_answer(message: types.Message) -> None:
     net = message.text
     if net[-1].lower() in ['t', 'т']:
         await message.reply(f"{replies['net']}")
@@ -27,8 +27,8 @@ async def net_otvet(message: types.Message) -> None:
                 break
 
 
-@router.message(F.text, re_functions.nit_otvet_filter)
-async def nit_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.nit_answer_filter)
+async def nit_answer(message: types.Message) -> None:
     nit = message.text
     if nit[-1].lower() in ['t', 'т']:
         await message.reply(f"{replies['nit']}")
@@ -39,8 +39,8 @@ async def nit_otvet(message: types.Message) -> None:
                 break
 
 
-@router.message(F.text, re_functions.no_otvet_filter)
-async def no_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.no_answer_filter)
+async def no_answer(message: types.Message) -> None:
     no = message.text
     if no[-1].lower() in ['o', 'у']:
         await message.reply(f"{replies['no']}")
@@ -51,8 +51,8 @@ async def no_otvet(message: types.Message) -> None:
                 break
 
 
-@router.message(F.text, re_functions.nope_otvet_filter)
-async def nope_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.nope_answer_filter)
+async def nope_answer(message: types.Message) -> None:
     nope = message.text
     if nope[-1].lower() in ['п', 'e']:
         await message.reply(f"{replies['nope']}")
@@ -63,8 +63,8 @@ async def nope_otvet(message: types.Message) -> None:
                 break
 
 
-@router.message(F.text, re_functions.nein_otvet_filter)
-async def nein_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.nein_answer_filter)
+async def nein_answer(message: types.Message) -> None:
     nein = message.text
     if nein[-1].lower() in ['n', 'н']:
         await message.reply(f"{replies['nein']}")
@@ -75,8 +75,8 @@ async def nein_otvet(message: types.Message) -> None:
                 break
 
 
-@router.message(F.text, re_functions.yes_otvet_filter)
-async def yes_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.yes_answer_filter)
+async def yes_answer(message: types.Message) -> None:
     yes = message.text
     if yes[-1].lower() in ['с', 's']:
         await message.reply(f"{replies['yes']}")
@@ -87,8 +87,8 @@ async def yes_otvet(message: types.Message) -> None:
                 break
 
 
-@router.message(F.text, re_functions.da_otvet_filter)
-async def da_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.da_answer_filter)
+async def da_answer(message: types.Message) -> None:
     ggl_url = f"""https://customsearch.googleapis.com/customsearch/v1?cx=6120d6c5dd8c74814&fileType=jpg&num=10&imgType=clipart&gl=ru&lr=lang_ru&q=старая%20сковорода&searchType=image&siteSearch=free3d.com&siteSearchFilter=e&key={ggl_api_key}"""
     ggl_search_result = req.get(ggl_url).json()
     links_list = []
@@ -109,8 +109,8 @@ async def da_otvet(message: types.Message) -> None:
                 break
 
 
-@router.message(F.text, re_functions.traktorista_otvet_filter)
-async def traktorista_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.traktorista_answer_filter)
+async def traktorista_answer(message: types.Message) -> None:
     ggl_url = f"""https://customsearch.googleapis.com/customsearch/v1?cx=6120d6c5dd8c74814&fileType=jpg&num=10&imgType=photo&gl=ru&lr=lang_ru&q=тракторист%20в%20тракторе&searchType=image&siteSearch=free3d.com&siteSearchFilter=e&key={ggl_api_key}"""
     ggl_search_result = req.get(ggl_url).json()
     links_list = []
@@ -123,18 +123,18 @@ async def traktorista_otvet(message: types.Message) -> None:
     await message.reply(answer)
 
 
-@router.message(F.text, re_functions.gde_otvet_filter)
-async def gde_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.gde_answer_filter)
+async def gde_answer(message: types.Message) -> None:
     await message.reply(f"{replies['gde']}")
 
 
-@router.message(F.text, re_functions.nu_otvet_filter)
-async def nu_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.nu_answer_filter)
+async def nu_answer(message: types.Message) -> None:
     await message.reply(f"{replies['nu']}")
 
 
-@router.message(F.text, re_functions.kto_otvet_filter)
-async def kto_otvet(message: types.Message) -> None:
+@router.message(F.text, re_functions.kto_answer_filter)
+async def kto_answer(message: types.Message) -> None:
     await message.reply(f"{replies['kto']}")
 
 

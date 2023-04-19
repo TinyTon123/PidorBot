@@ -66,3 +66,9 @@ def kto_answer_filter(message: types.Message) -> bool:
     kto_regex: str = r"\b(?:(?:[кКkK]+[_\W]*)+(?:[тТtT]+[_\W]*)+(?:[оОoO]+[_\W]*)+)+[\W_]*$"
     result: list = re.findall(kto_regex, message.text)
     return len(result) != 0
+
+
+def cho_answer_filter(message: types.Message) -> bool:
+    cho_regex: str = r"\b(?:(?:[чЧ]+[_\W]*)+(?:[оОеЕeEёЁoO]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(cho_regex, message.text)
+    return len(result) != 0

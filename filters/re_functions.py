@@ -3,7 +3,7 @@ from aiogram import types
 
 
 def net_answer_filter(message: types.Message) -> bool:
-    net_regex: str = r"\b(?:(?:[нНNnH]+[\W_]*)+(?:[еЕEe]+[\W_]*)+(?:[тТTt]+[\W_]*)+)+[\W_ь]*$"
+    net_regex: str = r"^(?:(?:[нНNnH]+[\W_]*)+(?:[еЕEe]+[\W_]*)+(?:[тТTt]+[\W_]*)+)+[\W_ь]*$"
     result: list = re.findall(net_regex, message.text)
     return len(result) != 0
 
@@ -71,4 +71,10 @@ def kto_answer_filter(message: types.Message) -> bool:
 def cho_answer_filter(message: types.Message) -> bool:
     cho_regex: str = r"\b(?:(?:[чЧ]+[_\W]*)+(?:[оОеЕeEёЁoO]+[_\W]*)+)+[\W_]*$"
     result: list = re.findall(cho_regex, message.text)
+    return len(result) != 0
+
+
+def kak_answer_filter(message: types.Message) -> bool:
+    kak_regex: str = r"\b(?:(?:[кКkK]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[кКkK]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(kak_regex, message.text)
     return len(result) != 0

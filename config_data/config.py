@@ -21,5 +21,5 @@ class Config:
 def load_config(path: str | None = None) -> Config:
     env = Env()
     env.read_env(path)
-    return Config(tg_bot=TgBot(token=env('bot_token')),
-                  api_config=APIConfig(google_api=env('ggl_api_key')))
+    return Config(tg_bot=TgBot(token=env('BOT_TOKEN')),
+                  api_config=APIConfig(google_api=env('GGL_API_KEY')))

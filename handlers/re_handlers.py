@@ -143,6 +143,16 @@ async def cho_answer(message: types.Message) -> None:
     await message.reply(f"{replies['cho']}")
 
 
+@router.message(F.text, re_functions.kak_answer_filter)
+async def kak_answer(message: types.Message) -> None:
+    await message.reply(f"{replies['kak']}")
+
+
+@router.message(F.reply_to_message.from_user.id == 6017337446, F.text.regexp(r"^[хХ]уй на!?$"))
+async def na_answer(message: types.Message):
+    await message.reply(f"{replies['na']}")
+
+
 @router.message(F.from_user.id == 119954087, F.reply_to_message.from_user.id == 6017337446)
 async def joke_answer(message: types.Message):
     await message.reply(text=random.choice(answer_for_roma))

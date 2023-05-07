@@ -78,3 +78,45 @@ def kak_answer_filter(message: types.Message) -> bool:
     kak_regex: str = r"\b(?:(?:[кКkK]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[кКkK]+[_\W]*)+)+[\W_]*$"
     result: list = re.findall(kak_regex, message.text)
     return len(result) != 0
+
+
+def zdraste_answer_filter(message: types.Message) -> bool:
+    zdraste_regex: str = r"\b(?:(?:[зЗzZ]+[_\W]*)+(?:[дДdD]+[_\W]*)+(?:[рРrRPp]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[сСsScC]+[_\W]*)+(?:[ьЬ]+[_\W]*)+(?:[тТtT]+[_\W]*)+(?:[еЕeEиИiIl]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(zdraste_regex, message.text)
+    return len(result) != 0
+
+
+def kogda_answer_filter(message: types.Message) -> bool:
+    kogda_regex: str = r"\b(?:(?:[кКkK]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[гГgG]+[_\W]*)+(?:[дДdD]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(kogda_regex, message.text)
+    return len(result) != 0
+
+
+def pochemu_answer_filter(message: types.Message) -> bool:
+    pochemu_regex: str = r"\b(?:(?:[пП]*[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[чЧ]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[мМM]+[_\W]*)+(?:[уУy]+[_\W]*)+|(?:[рРpP]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[сСcC]+[_\W]*)+(?:[НhH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[МmM]+[_\W]*)+(?:[uU]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(pochemu_regex, message.text)
+    return len(result) != 0
+
+
+def zachem_answer_filter(message: types.Message) -> bool:
+    zachem_regex: str = r"\b(?:(?:[зЗ3]*[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[чЧ]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[мМM]+[_\W]*)+|(?:[zZ]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[сСcC]+[_\W]*)+(?:[НhH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[МmM]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(zachem_regex, message.text)
+    return len(result) != 0
+
+
+def mne_answer_filter(message: types.Message) -> bool:
+    mne_regex: str = r"^(?:(?:[нНnNH]*[_\W]*)+(?:[уУuUy]+[_\W]*)+)?(?:(?:[аАaA]+[_\W]*)+(?:[мМmM]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(mne_regex, message.text)
+    return len(result) != 0
+
+
+def vot_ona_answer_filter(message: types.Message) -> bool:
+    vot_ona_regex: str = r"^(?:(?:[вВvVB]*[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[тТtT]+[_\W]*)+)?(?:(?:[оОoO]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"
+    result: list = re.findall(vot_ona_regex, message.text)
+    return len(result) != 0
+
+
+def chto_podelat_answer_filter(message: types.Message) -> bool:
+    chto_podelat_regex: str = r"^(?:ну )?что (?:по)?(?:делать)+[\W_]*$"
+    result: list = re.findall(chto_podelat_regex, message.text, flags=re.IGNORECASE)
+    return len(result) != 0

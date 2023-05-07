@@ -147,6 +147,40 @@ async def cho_answer(message: types.Message) -> None:
 async def kak_answer(message: types.Message) -> None:
     await message.reply(f"{replies['kak']}")
 
+@router.message(F.text, re_functions.zdraste_answer_filter)
+async def zdraste_answer(message: types.Message) -> None:
+    await message.reply(f"{replies['zdraste']}")
+
+
+@router.message(F.text, re_functions.kogda_answer_filter)
+async def kogda_answer(message: types.Message) -> None:
+    await message.reply(f"{replies['kogda']}")
+
+
+@router.message(F.text, re_functions.pochemu_answer_filter)
+async def pochemu_answer(message: types.Message) -> None:
+    await message.reply(f"{replies['pochemu']}")
+
+
+@router.message(F.text, re_functions.zachem_answer_filter)
+async def zachem_answer(message: types.Message) -> None:
+    await message.reply(f"{replies['zachem']}")
+
+
+@router.message(F.text, re_functions.mne_answer_filter)
+async def mne_answer(message: types.Message) -> None:
+    await message.reply(f"{replies['mne']}")
+
+
+@router.message(F.text, re_functions.vot_ona_answer_filter)
+async def vot_ona_answer(message: types.Message) -> None:
+    await message.reply(f"{replies['vot_ona']}")
+
+
+@router.message(F.text, re_functions.chto_podelat_answer_filter)
+async def chto_podelat_answer(message: types.Message) -> None:
+    await message.reply(f"{replies['chto_podelat']}")
+
 
 @router.message(F.reply_to_message.from_user.id == 6017337446, F.text.regexp(r"^[хХ]уй на!?$"))
 async def na_answer(message: types.Message):

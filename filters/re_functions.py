@@ -15,8 +15,9 @@ def nit_answer_filter(message: types.Message) -> bool:
 
 
 def no_answer_filter(message: types.Message) -> bool:
-    no_regex: str = r"\b(?:(?:[нНH]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[уУy]+[_\W]*)+|(?:[Nn]+[_\W]*)+(?:[OoоО]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(no_regex, message.text)
+    no_regex: str = r"""\b(?:(?:[нНH]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[уУy]+[_\W]*)+|
+                        (?:[Nn]+[_\W]*)+(?:[OoоО]+[_\W]*)+)+[\W_]*$"""
+    result: list = re.findall(no_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
 
@@ -33,8 +34,9 @@ def nein_answer_filter(message: types.Message) -> bool:
 
 
 def yes_answer_filter(message: types.Message) -> bool:
-    yes_regex: str = r"\b(?:(?:[йЙ]*[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[сСcC]+[_\W]*)+|(?:[yY]+[_\W]*)+(?:[eEеЕ]+[_\W]*)+(?:[sS]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(yes_regex, message.text)
+    yes_regex: str = r"""\b(?:(?:[йЙ]*[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[сСcC]+[_\W]*)+|
+                         (?:[yY]+[_\W]*)+(?:[eEеЕ]+[_\W]*)+(?:[sS]+[_\W]*)+)+[\W_]*$"""
+    result: list = re.findall(yes_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
 
@@ -45,8 +47,9 @@ def da_answer_filter(message: types.Message) -> bool:
 
 
 def traktorista_answer_filter(message: types.Message) -> bool:
-    traktorista_regex: str = r"\b(?:[тТtT]+[_\W]*[рРrRpP]+[_\W]*[ыЫиИiIl]+[_\W]*[сСsScC]+[_\W]*[тТtT]+[_\W]*[аАaAоОoO]+|(?<!(?:[ояуе]) )[З3](?:[_\W]*[0О]){2})+[\W_]*$"
-    result: list = re.findall(traktorista_regex, message.text)
+    traktorista_regex: str = r"""\b(?:[тТtT]+[_\W]*[рРrRpP]+[_\W]*[ыЫиИiIl]+[_\W]*[сСsScC]+
+                                 [_\W]*[тТtT]+[_\W]*[аАaAоОoO]+|(?<!(?:[ояуе]) )[З3](?:[_\W]*[0О]){2})+[\W_]*$"""
+    result: list = re.findall(traktorista_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
 
@@ -81,38 +84,48 @@ def kak_answer_filter(message: types.Message) -> bool:
 
 
 def zdraste_answer_filter(message: types.Message) -> bool:
-    zdraste_regex: str = r"\b(?:(?:[зЗzZ]+[_\W]*)+(?:[дДdD]+[_\W]*)+(?:[рРrRPp]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[сСsScC]+[_\W]*)+(?:[ьЬ]+[_\W]*)+(?:[тТtT]+[_\W]*)+(?:[еЕeEиИiIl]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(zdraste_regex, message.text)
+    zdraste_regex: str = r"""\b(?:(?:[зЗzZ]+[_\W]*)+(?:[дДdD]+[_\W]*)+(?:[рРrRPp]+[_\W]*)+(?:[аАaA]+[_\W]*)+
+                             (?:[сСsScC]+[_\W]*)+(?:[ьЬ]+[_\W]*)+(?:[тТtT]+[_\W]*)+(?:[еЕeEиИiIl]+[_\W]*)+)+[\W_]*$"""
+    result: list = re.findall(zdraste_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
 
 def kogda_answer_filter(message: types.Message) -> bool:
-    kogda_regex: str = r"\b(?:(?:[кКkK]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[гГgG]+[_\W]*)+(?:[дДdD]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(kogda_regex, message.text)
+    kogda_regex: str = r"""\b(?:(?:[кКkK]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[гГgG]+[_\W]*)+(?:[дДdD]+
+                            [_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
+    result: list = re.findall(kogda_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
 
 def pochemu_answer_filter(message: types.Message) -> bool:
-    pochemu_regex: str = r"\b(?:(?:[пП]*[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[чЧ]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[мМM]+[_\W]*)+(?:[уУy]+[_\W]*)+|(?:[рРpP]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[сСcC]+[_\W]*)+(?:[НhH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[МmM]+[_\W]*)+(?:[uU]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(pochemu_regex, message.text)
+    pochemu_regex: str = r"""\b(?:(?:[пП]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[чЧ]+[_\W]*)+
+                             (?:[еЕeE]+[_\W]*)+(?:[мМM]+[_\W]*)+(?:[уУy]+[_\W]*)+|
+                             (?:[рРpP]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[сСcC]+[_\W]*)+
+                             (?:[НhH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[МmM]+[_\W]*)+(?:[uU]+[_\W]*)+)+[\W_]*$"""
+    result: list = re.findall(pochemu_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
 
 def zachem_answer_filter(message: types.Message) -> bool:
-    zachem_regex: str = r"\b(?:(?:[зЗ3]*[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[чЧ]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[мМM]+[_\W]*)+|(?:[zZ]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[сСcC]+[_\W]*)+(?:[НhH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[МmM]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(zachem_regex, message.text)
+    zachem_regex: str = r"""\b(?:(?:[зЗ3]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[чЧ]+[_\W]*)+
+                            (?:[еЕeE]+[_\W]*)+(?:[мМM]+[_\W]*)+|
+                            (?:[zZ]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[сСcC]+[_\W]*)+
+                            (?:[НhH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[МmM]+[_\W]*)+)+[\W_]*$"""
+    result: list = re.findall(zachem_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
 
 def mne_answer_filter(message: types.Message) -> bool:
-    mne_regex: str = r"^(?:(?:[нНnNH]*[_\W]*)+(?:[уУuUy]+[_\W]*)+)?(?:(?:[аАaA]+[_\W]*)+(?:[мМmM]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(mne_regex, message.text)
+    mne_regex: str = r"""^(?:(?:[нНnNH]*[_\W]*)+(?:[уУuUy]+[_\W]*)+)?(?:(?:[аАaA]+[_\W]*)+
+                                (?:[мМmM]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+)+[\W_]*$"""
+    result: list = re.findall(mne_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
 
 def vot_ona_answer_filter(message: types.Message) -> bool:
-    vot_ona_regex: str = r"^(?:(?:[вВvVB]*[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[тТtT]+[_\W]*)+)?(?:(?:[оОoO]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"
-    result: list = re.findall(vot_ona_regex, message.text)
+    vot_ona_regex: str = r"""^(?:(?:[вВvVB]*[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[тТtT]+[_\W]*)+)?
+                             (?:(?:[оОoO]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
+    result: list = re.findall(vot_ona_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
 

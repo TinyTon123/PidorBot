@@ -15,6 +15,7 @@ config: Config = load_config()
 ggl_api_key: str = config.api_config.google_api
 
 
+# Хендлеры для ответа на реплики
 @router.message(F.text, re_functions.net_answer_filter)
 async def net_answer(message: types.Message) -> None:
     net: str = message.text
@@ -89,7 +90,11 @@ async def yes_answer(message: types.Message) -> None:
 
 @router.message(F.text, re_functions.da_answer_filter)
 async def da_answer(message: types.Message) -> None:
-    ggl_url: str = f"""https://customsearch.googleapis.com/customsearch/v1?cx=6120d6c5dd8c74814&fileType=jpg&num=10&imgType=clipart&gl=ru&lr=lang_ru&q=старая%20сковорода&searchType=image&siteSearch=free3d.com&siteSearchFilter=e&key={ggl_api_key}"""
+    # Обращаемся к API гугла за картинкой сковороды
+    ggl_url: str = "https://customsearch.googleapis.com/customsearch/v1?" \
+                   "cx=6120d6c5dd8c74814&fileType=jpg&num=10&imgType=clipart&gl=ru&" \
+                   "lr=lang_ru&q=старая%20сковорода&searchType=image&siteSearch=free3d.com&" \
+                   "siteSearchFilter=e&key={ggl_api_key}"""
     ggl_search_result: dict[str, list[dict[str, str]]] = req.get(ggl_url).json()
     links_list: list = []
     for i in range(10):
@@ -111,7 +116,11 @@ async def da_answer(message: types.Message) -> None:
 
 @router.message(F.text, re_functions.traktorista_answer_filter)
 async def traktorista_answer(message: types.Message) -> None:
-    ggl_url: str = f"""https://customsearch.googleapis.com/customsearch/v1?cx=6120d6c5dd8c74814&fileType=jpg&num=10&imgType=photo&gl=ru&lr=lang_ru&q=тракторист%20в%20тракторе&searchType=image&siteSearch=free3d.com&siteSearchFilter=e&key={ggl_api_key}"""
+    # Обращаемся к API гугла за картинкой тракториста
+    ggl_url: str = "https://customsearch.googleapis.com/customsearch/v1?" \
+                   "cx=6120d6c5dd8c74814&fileType=jpg&num=10&imgType=photo&gl=ru&" \
+                   "lr=lang_ru&q=тракторист%20в%20тракторе&searchType=image&siteSearch=free3d.com&" \
+                   "siteSearchFilter=e&key={ggl_api_key}"
     ggl_search_result: dict[str, list[dict[str, str]]] = req.get(ggl_url).json()
     links_list: list = []
     for i in range(10):
@@ -146,6 +155,7 @@ async def cho_answer(message: types.Message) -> None:
 @router.message(F.text, re_functions.kak_answer_filter)
 async def kak_answer(message: types.Message) -> None:
     await message.reply(f"{replies['kak']}")
+
 
 @router.message(F.text, re_functions.zdraste_answer_filter)
 async def zdraste_answer(message: types.Message) -> None:

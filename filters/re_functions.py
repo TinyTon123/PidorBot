@@ -2,6 +2,7 @@ import re
 from aiogram import types
 
 
+# Функции для фильтрации реплик
 def net_answer_filter(message: types.Message) -> bool:
     net_regex: str = r"^(?:(?:[нНNnH]+[\W_]*)+(?:[еЕEe]+[\W_]*)+(?:[тТTt]+[\W_]*)+)+[\W_ь]*$"
     result: list = re.findall(net_regex, message.text)

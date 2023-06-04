@@ -4,7 +4,7 @@ from environs import Env
 
 @dataclass
 class APIConfig:
-    google_api: str  # Название базы данных
+    google_api: str  # Токен для доступа к API гугла
 
 
 @dataclass

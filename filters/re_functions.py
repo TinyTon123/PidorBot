@@ -79,7 +79,7 @@ def cho_answer_filter(message: types.Message) -> bool:
 
 
 def kak_answer_filter(message: types.Message) -> bool:
-    kak_regex: str = r"\b(?:(?:[кКkK]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[кКkK]+[_\W]*)+)+[\W_]*$"
+    kak_regex: str = r"(?:(?:[эЭeE][тТtT][оОoO] )|но |и |^)(?:[кКkK]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[кКkK]+[_\W]*)+[\W_]*$"
     result: list = re.findall(kak_regex, message.text)
     return len(result) != 0
 

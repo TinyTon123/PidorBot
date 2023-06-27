@@ -202,6 +202,6 @@ async def joke_answer(message: types.Message):
     await message.reply(text=random.choice(answer_for_roma))
 
 
-@router.message(F.text == 'Срамота' )
+@router.message(F.text.lower() == 'срамота')
 async def shame(message: types.Message):
     await message.answer_sticker('CAACAgIAAxkBAAIOwmSbQps8J9EspzDg6OHL9WU5O3RRAAJDLQAC63TQSaGowbx7P1SzLwQ')

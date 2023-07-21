@@ -23,7 +23,8 @@ replies: dict[str, str] = {
         'vot_ona': 'На хую намотана!',
         'chto_podelat': 'Муравью хуй приделать!',
         'new_chat_members': 'Приветствуем тебя, о, ',
-        'left_chat_member': 'Мы будем скучать, '
+        'left_chat_member': 'Мы будем скучать, ',
+        'friday': 'Развратница!!'
         }
 
 answer_for_roma: tuple = (

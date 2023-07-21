@@ -205,3 +205,11 @@ async def joke_answer(message: types.Message):
 @router.message(F.text.lower() == 'срамота')
 async def shame(message: types.Message):
     await message.answer_sticker('CAACAgIAAxkBAAIOwmSbQps8J9EspzDg6OHL9WU5O3RRAAJDLQAC63TQSaGowbx7P1SzLwQ')
+
+
+@router.message(F.text, re_functions.friday)
+async def shame(message: types.Message):
+    if random.randint(0, 1):
+        await message.answer_sticker('CAACAgIAAxkBAAIQLGS6_AABY7w_kG2cNfLL5u9IL_TgvQACAgADEaneGLjjUpACUz9RLwQ')
+    else:
+        await message.reply(f"{replies['friday']}")

@@ -134,3 +134,9 @@ def chto_podelat_answer_filter(message: types.Message) -> bool:
     chto_podelat_regex: str = r"^(?:ну )?что (?:по)?(?:делать)+[\W_]*$"
     result: list = re.findall(chto_podelat_regex, message.text, flags=re.IGNORECASE)
     return len(result) != 0
+
+
+def friday(message: types.Message) -> bool:
+    friday: str = r"(?:пятница|p[iy]atnit*[sz]a)[\W_]*$"
+    result: list = re.findall(friday, message.text, flags=re.IGNORECASE)
+    return len(result) != 0

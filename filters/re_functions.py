@@ -136,7 +136,10 @@ def chto_podelat_answer_filter(message: types.Message) -> bool:
     return len(result) != 0
 
 
-def friday(message: types.Message) -> bool:
-    friday_regex: str = r"(?:пятница|p[iy]atnit*[sz]a)[\W_]*$"
+def friday(message: types.Message) -> bool | dict[str, any]:
+    friday_regex: str = r"(пятниц)((?:а(?:[мх]и?)?|[ыеу]|ей)?[\W_]*)$"
     result: list = re.findall(friday_regex, message.text, flags=re.IGNORECASE)
-    return len(result) != 0
+    if len(result) != 0:
+        return {'ending': result[0][1]}
+    else:
+        return False

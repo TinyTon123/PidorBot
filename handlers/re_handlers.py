@@ -208,8 +208,8 @@ async def shame(message: types.Message):
 
 
 @router.message(F.text, re_functions.friday)
-async def shame(message: types.Message):
+async def friday(message: types.Message, ending: str):
     if random.randint(0, 1):
         await message.answer_sticker('CAACAgIAAxkBAAIQLGS6_AABY7w_kG2cNfLL5u9IL_TgvQACAgADEaneGLjjUpACUz9RLwQ')
     else:
-        await message.reply(f"{replies['friday']}")
+        await message.reply(f"{replies['friday'] + ending}")

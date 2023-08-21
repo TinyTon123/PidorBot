@@ -90,27 +90,27 @@ async def yes_answer(message: types.Message) -> None:
 
 @router.message(F.text, re_functions.da_answer_filter)
 async def da_answer(message: types.Message) -> None:
-    # Обращаемся к API гугла за картинкой сковороды
-    ggl_url: str = f"https://customsearch.googleapis.com/customsearch/v1?" \
-                   f"cx=6120d6c5dd8c74814&fileType=jpg&num=10&imgType=clipart&gl=ru&" \
-                   f"lr=lang_ru&q=старая%20сковорода&searchType=image&siteSearch=free3d.com&" \
-                   f"siteSearchFilter=e&key={ggl_api_key}"""
-    ggl_search_result: dict[str, list[dict[str, str]]] = req.get(ggl_url).json()
-    links_list: list = []
-    for i in range(10):
-        links_list.append(ggl_search_result['items'][i]['link'])
+    # Обращаемся к API гугла за картинкой сковороды (deprecated since 21.08.23)
+    # ggl_url: str = f"https://customsearch.googleapis.com/customsearch/v1?" \
+    #                f"cx=6120d6c5dd8c74814&fileType=jpg&num=10&imgType=clipart&gl=ru&" \
+    #                f"lr=lang_ru&q=старая%20сковорода&searchType=image&siteSearch=free3d.com&" \
+    #                f"siteSearchFilter=e&key={ggl_api_key}"""
+    # ggl_search_result: dict[str, list[dict[str, str]]] = req.get(ggl_url).json()
+    # links_list: list = []
+    # for i in range(10):
+    #     links_list.append(ggl_search_result['items'][i]['link'])
+    #
+    # link: str = random.choice(links_list)
 
-    link: str = random.choice(links_list)
-
-    answer: str = f"""{hide_link(link)}{replies['da']}"""
+    # answer: str = f"""{hide_link(link)}{replies['da']}"""
 
     da: str = message.text
     if da[-1].lower() in ['а', 'a']:
-        await message.reply(answer)
+        await message.reply(f"{replies['da']}")
     else:
         for i in range(1, len(da) + 1):
             if da[-i].lower() in ['а', 'a']:
-                await message.reply(f"{answer}{da[-i + 1:]}")
+                await message.reply(f"{replies['da']}{da[-i + 1:]}")
                 break
 
 

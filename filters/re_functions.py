@@ -140,6 +140,6 @@ def friday(message: types.Message) -> bool | dict[str, any]:
     friday_regex: str = r"(пятниц)((?:а(?:[мх]и?)?|[ыеу]|ей)?[\W_]*)$"
     result: list = re.findall(friday_regex, message.text, flags=re.IGNORECASE)
     if len(result) != 0:
-        return {'ending': result[0][1]}
+        return {'ending': result[0][1].lower()}
     else:
         return False

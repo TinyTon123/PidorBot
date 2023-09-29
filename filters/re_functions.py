@@ -124,8 +124,8 @@ def mne_answer_filter(message: types.Message) -> bool:
 
 
 def vot_ona_answer_filter(message: types.Message) -> bool:
-    vot_ona_regex: str = r"""^(?:(?:[вВvVB]*[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[тТtT]+[_\W]*)+)?
-                             (?:(?:[оОoO]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
+    vot_ona_regex: str = r"""^(?:[вВvVB]*[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[тТtT]+[_\W]*)+
+                              (?:(?:[оОoO]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
     result: list = re.findall(vot_ona_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 

@@ -112,7 +112,7 @@ async def da_answer(message: types.Message) -> None:
     #         if da[-i].lower() in ['а', 'a']:
     #             await message.reply(f"{replies['da']}{da[-i + 1:]}")
     #             break
-    await message.answer_animation('CgACAgIAAxkBAAIUcWU39qhWWp_0eOAZn6-xXSqyV4LEAAJ4DgACg2WxSWQZ5DJ7IOhiMAQ')
+    await message.reply_animation('CgACAgIAAxkBAAIK62U3-oLjJrkyAAFlG3C7rosUenHnTwACeA4AAoNlsUmcXbpBC6TEtDAE')
 
 
 @router.message(F.text, re_functions.traktorista_answer_filter)

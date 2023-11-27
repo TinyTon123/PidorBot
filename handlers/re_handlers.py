@@ -210,7 +210,10 @@ async def shame(message: types.Message):
 
 @router.message(F.text, re_functions.friday)
 async def friday(message: types.Message, ending: str):
-    if random.randint(0, 1):
+    answer = random.randint(0, 2)
+    if answer == 0:
         await message.answer_sticker('CAACAgIAAxkBAAIQLGS6_AABY7w_kG2cNfLL5u9IL_TgvQACAgADEaneGLjjUpACUz9RLwQ')
+    elif answer == 1:
+        await message.answer_video('BAACAgIAAxkBAAIPrGVlGjCbIo9uuQIUbBGJtB2Btp2rAAKHNQACRsW4Sq4EAlt95oxIMwQ')
     else:
         await message.reply(f"{replies['friday'] + ending}")

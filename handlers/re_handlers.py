@@ -135,7 +135,7 @@ async def traktorista_answer(message: types.Message) -> None:
 
 @router.message(F.text, re_functions.gde_answer_filter)
 async def gde_answer(message: types.Message) -> None:
-    await message.reply(f"{replies['gde']}")
+    await message.reply(random.choice(replies['gde']))
 
 
 @router.message(F.text, re_functions.nu_answer_filter)

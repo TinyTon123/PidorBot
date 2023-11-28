@@ -123,11 +123,8 @@ async def traktorista_answer(message: types.Message) -> None:
                    f"lr=lang_ru&q=тракторист%20в%20тракторе&searchType=image&siteSearch=free3d.com&" \
                    f"siteSearchFilter=e&key={ggl_api_key}"
     ggl_search_result: dict[str, list[dict[str, str]]] = req.get(ggl_url).json()
-    links_list: list = []
-    for i in range(10):
-        links_list.append(ggl_search_result['items'][i]['link'])
 
-    link: str = random.choice(links_list)
+    link: str = ggl_search_result['items'][random.randint(0, 10)]['link']
 
     answer: str = f"""{hide_link(link)}{replies['300']}"""
     await message.reply(answer)
@@ -217,3 +214,8 @@ async def friday(message: types.Message, ending: str):
         await message.answer_video('BAACAgIAAxkBAAIPrGVlGjCbIo9uuQIUbBGJtB2Btp2rAAKHNQACRsW4Sq4EAlt95oxIMwQ')
     else:
         await message.reply(f"{replies['friday'] + ending}")
+
+
+@router.message(F.text, re_functions.kak_dela_answer_filter)
+async def kak_dela_answer(message: types.Message) -> None:
+    await message.reply(f"{replies['kak_dela']}")

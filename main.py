@@ -46,7 +46,7 @@ async def main() -> None:
 
             if (current_day == target_day) and (current_hour >= target_hour):
                 # Отправляем сообщение
-                await bot.send_message(chat_id=1403290431, text=answer)
+                await bot.send_message(chat_id=-1001403290431, text=answer)
                 # Ждем неделю перед отправкой следующего сообщения
                 await asyncio.sleep(60 * 60 * 24 * 6)
             else:

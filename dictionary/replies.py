@@ -25,7 +25,8 @@ replies: dict[str, str] = {
         'new_chat_members': 'Приветствуем тебя, о, ',
         'left_chat_member': 'Мы будем скучать, ',
         'friday': 'Развратниц',
-        'kak_dela': 'Пока не родила!'
+        'kak_dela': 'Пока не родила!',
+        'wednesday': 'Это среда, мои чуваки!'
         }
 
 answer_for_roma: tuple = (

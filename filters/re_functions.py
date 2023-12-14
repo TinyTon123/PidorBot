@@ -93,7 +93,7 @@ def zdraste_answer_filter(message: types.Message) -> bool:
 
 
 def kogda_answer_filter(message: types.Message) -> bool:
-    kogda_regex: str = r"""(?:(?:[кКkK]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[гГgG]+[_\W]*)+(?:[дДdD]+
+    kogda_regex: str = r"""\b(?:(?:[кКkK]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[гГgG]+[_\W]*)+(?:[дДdD]+
                             [_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
     result: list = re.findall(kogda_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
@@ -109,7 +109,7 @@ def pochemu_answer_filter(message: types.Message) -> bool:
 
 
 def zachem_answer_filter(message: types.Message) -> bool:
-    zachem_regex: str = r"""(?:(?:[зЗ3]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[чЧ]+[_\W]*)+
+    zachem_regex: str = r"""\b(?:(?:[зЗ3]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[чЧ]+[_\W]*)+
                             (?:[еЕeE]+[_\W]*)+(?:[мМM]+[_\W]*)+|
                             (?:[zZ]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[сСcC]+[_\W]*)+
                             (?:[НhH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[МmM]+[_\W]*)+)+[\W_]*$"""

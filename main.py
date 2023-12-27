@@ -48,7 +48,7 @@ async def main() -> None:
                 # Отправляем сообщение
                 await bot.send_message(chat_id=-1001403290431, text=answer)
                 # Ждем неделю перед отправкой следующего сообщения
-                await asyncio.sleep(60 * 60 * 24 * 6)
+                await asyncio.sleep(60 * 60 * 24 * 7)
             else:
                 # Если текущий день недели не является целевым, ждем 1 час и проверяем снова
                 await asyncio.sleep(60 * 60)

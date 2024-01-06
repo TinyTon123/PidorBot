@@ -26,7 +26,7 @@ async def main() -> None:
     dp.include_router(chat_members_handlers.router)
     bot: Bot = Bot(bot_token, parse_mode="HTML")
 
-    async def send_message_on_specific_day():
+    async def its_wednesday_my_dudes():
         # Определите, в какой день недели нужно отправлять сообщение (0 - понедельник, 6 - воскресенье)
         target_day = 2
         target_hour = 9
@@ -36,15 +36,16 @@ async def main() -> None:
             current_day = datetime.datetime.today().weekday()
             current_hour = datetime.datetime.today().hour
 
-            ggl_url: str = f"https://customsearch.googleapis.com/customsearch/v1?cx=6120d6c5dd8c74814&" \
-                           f"fileType=jpg&num=10&imgType=photo&gl=ru&lr=lang_ru&q=это%20среда%20мои%20чуваки&" \
-                           f"searchType=image&siteSearch=free3d.com&siteSearchFilter=e&key={ggl_api_key}"
-            ggl_search_result: dict[str, list[dict[str, str]]] = req.get(ggl_url).json()
-
-            link: str = ggl_search_result['items'][random.randint(0, 10)]['link']
-            answer: str = f"""{hide_link(link)}{replies['wednesday']}"""
-
             if (current_day == target_day) and (current_hour >= target_hour):
+
+                ggl_url: str = f"https://customsearch.googleapis.com/customsearch/v1?cx=6120d6c5dd8c74814&" \
+                               f"fileType=jpg&num=10&imgType=photo&gl=ru&lr=lang_ru&q=это%20среда%20мои%20чуваки&" \
+                               f"searchType=image&siteSearch=free3d.com&siteSearchFilter=e&key={ggl_api_key}"
+                ggl_search_result: dict[str, list[dict[str, str]]] = req.get(ggl_url).json()
+
+                link: str = ggl_search_result['items'][random.randint(0, 9)]['link']
+                answer: str = f"""{hide_link(link)}{replies['wednesday']}"""
+
                 # Отправляем сообщение
                 await bot.send_message(chat_id=-1001403290431, text=answer)
                 # Ждем неделю перед отправкой следующего сообщения
@@ -54,12 +55,12 @@ async def main() -> None:
                 await asyncio.sleep(60 * 60)
 
     loop = asyncio.get_event_loop()
-    loop.create_task(send_message_on_specific_day())
+    loop.create_task(its_wednesday_my_dudes())
     await bot.delete_webhook(drop_pending_updates=True)
     await bot.send_message(chat_id=391639940, text=f"{replies['startup']}")
     await dp.start_polling(bot)
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.DEBUG)
     asyncio.run(main())

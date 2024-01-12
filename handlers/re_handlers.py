@@ -219,3 +219,8 @@ async def friday(message: types.Message, ending: str):
 @router.message(F.text, re_functions.kak_dela_answer_filter)
 async def kak_dela_answer(message: types.Message) -> None:
     await message.reply(f"{replies['kak_dela']}")
+
+
+@router.message(F.text, re_functions.v_smysle_answer_filter)
+async def v_smysle_answer(message: types.Message) -> None:
+    await message.reply(f"{replies['v_smysle']}")

@@ -94,7 +94,7 @@ def zdraste_answer_filter(message: types.Message) -> bool:
 
 def kogda_answer_filter(message: types.Message) -> bool:
     kogda_regex: str = r"""\b(?:(?:[кКkK]+[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[гГgG]+[_\W]*)+(?:[дДdD]+
-                            [_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
+                           [_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
     result: list = re.findall(kogda_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
@@ -119,14 +119,14 @@ def zachem_answer_filter(message: types.Message) -> bool:
 
 def mne_answer_filter(message: types.Message) -> bool:
     mne_regex: str = r"""^(?:(?:[нНnNH]*[_\W]*)+(?:[уУuUy]+[_\W]*)+)?(?:(?:[аАaA]+[_\W]*)+
-                                (?:[мМmM]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+)+[\W_]*$"""
+                         (?:[мМmM]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[еЕeE]+[_\W]*)+)+[\W_]*$"""
     result: list = re.findall(mne_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
 
 def vot_ona_answer_filter(message: types.Message) -> bool:
     vot_ona_regex: str = r"""^(?:[вВvVB]*[_\W]*)+(?:[оОoO]+[_\W]*)+(?:[тТtT]+[_\W]*)+
-                              (?:(?:[оОoO]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
+                             (?:(?:[оОoO]+[_\W]*)+(?:[нНnNH]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
     result: list = re.findall(vot_ona_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0
 
@@ -148,6 +148,13 @@ def friday(message: types.Message) -> bool | dict[str, any]:
 
 def kak_dela_answer_filter(message: types.Message) -> bool:
     kak_dela_regex: str = r"""(?:(?:[кКkK]+[_\W]*)+(?:[аАaA]+[_\W]*)+(?:[кКkK]+[_\W]*)+
-                             (?:[дДdD]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[лЛlL]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
+                              (?:[дДdD]+[_\W]*)+(?:[еЕeE]+[_\W]*)+(?:[лЛlL]+[_\W]*)+(?:[аАaA]+[_\W]*)+)+[\W_]*$"""
     result: list = re.findall(kak_dela_regex, message.text, flags=re.VERBOSE)
+    return len(result) != 0
+
+
+def v_smysle_answer_filter(message: types.Message) -> bool:
+    v_smysle_regex: str = r"""(?:(?:[вВvVB]+[_\W]*)+(?:[sScCсС]+[_\W]*)+(?:[мМmM]+[_\W]*)+(?:[yYiIыЫ]+[_\W]*)+
+                              (?:[sScCсС]+[_\W]*)+(?:[лЛlL]+[_\W]*)+(?:[еЕeE]+[_\W]*)+)+[\W_]*$"""
+    result: list = re.findall(v_smysle_regex, message.text, flags=re.VERBOSE)
     return len(result) != 0

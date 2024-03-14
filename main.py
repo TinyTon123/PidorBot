@@ -28,13 +28,14 @@ async def main() -> None:
 
     async def its_wednesday_my_dudes():
         # Определите, в какой день недели нужно отправлять сообщение (0 - понедельник, 6 - воскресенье)
-        target_day = 2
-        target_hour = 9
+        target_day: int = 2
+        target_hour: int = 9
+        chats: tuple = (-1001403290431, -1002107056835)
 
         while True:
-            # Получаем текущий день недели
-            current_day = datetime.datetime.today().weekday()
-            current_hour = datetime.datetime.today().hour
+            # Получаем текущие день недели и час
+            current_day: int = datetime.datetime.today().weekday()
+            current_hour: int = datetime.datetime.today().hour
 
             if (current_day == target_day) and (current_hour >= target_hour):
 
@@ -46,9 +47,12 @@ async def main() -> None:
                 link: str = ggl_search_result['items'][random.randint(0, 9)]['link']
                 answer: str = f"""{hide_link(link)}{replies['wednesday']}"""
 
-                # Отправляем сообщение
-                await bot.send_message(chat_id=-1001403290431, text=answer)
-                # Ждем неделю перед отправкой следующего сообщения
+                # Рассылаем сообщения пулу чатов
+                for chat_id in chats:
+                    await bot.send_message(chat_id=chat_id, text=answer)
+                    await asyncio.sleep(3)
+
+                # Ждем неделю и повторяем процесс
                 await asyncio.sleep(60 * 60 * 24 * 7)
             else:
                 # Если текущий день недели не является целевым, ждем 1 час и проверяем снова

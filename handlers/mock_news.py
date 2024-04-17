@@ -22,7 +22,7 @@ bot: Bot = Bot(bot_token, default=bot_properties)
 messages_to_mock = []
 
 
-@router.message(F.text, ~F.forward_from, ~F.is_bot)  # F.chat.id == 1403290431, ~F.from_id == 391639940
+@router.message(F.text, F.chat.id == -1001403290431, ~F.forward_from, ~F.is_bot, ~F.from_id == 391639940)
 async def mock_news(message: types.Message) -> None:
     if np.random.binomial(1, 0.08):
         msg = f'''{message.text}'''
@@ -70,7 +70,7 @@ async def mock_news(message: types.Message) -> None:
                 final_text = final_response.json()['response']['alternatives'][0]['message']['text'].replace('*', '')
 
                 if not final_text.startswith('К сожалению'):
-                    await bot.send_message(chat_id=391639940, text=final_text)
+                    await bot.send_message(chat_id=-1001403290431, text=final_text)
 
                 messages_to_mock.clear()
 

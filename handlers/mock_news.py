@@ -22,7 +22,7 @@ bot: Bot = Bot(bot_token, default=bot_properties)
 messages_to_mock = []
 
 
-@router.message(F.text, F.chat.id == -1403290431, ~F.forward_from, ~F.is_bot, ~F.from_id == 391639940)
+@router.message(F.text, F.chat.id == -1001403290431, ~F.forward_from, ~F.is_bot, ~(F.from_user.id == 391639940))
 async def mock_news(message: types.Message) -> None:
     if np.random.binomial(1, 0.08):
         msg = f'''{message.text}'''

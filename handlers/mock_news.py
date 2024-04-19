@@ -27,8 +27,8 @@ async def mock_news(message: types.Message) -> None:
     if np.random.binomial(1, 0.08):
         msg = f'''{message.text}'''
         messages_to_mock.append(msg)
-        await bot.set_message_reaction(chat_id=message.chat.id, message_id=message.message_id,
-                                       reaction=[types.ReactionTypeEmoji(emoji='👀')])
+        # await bot.set_message_reaction(chat_id=message.chat.id, message_id=message.message_id,
+        #                                reaction=[types.ReactionTypeEmoji(emoji='👀')])
 
         if len(messages_to_mock) >= 3:
             request_text = '. '.join(messages_to_mock)

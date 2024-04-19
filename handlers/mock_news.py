@@ -24,13 +24,13 @@ messages_to_mock = []
 
 @router.message(F.text, F.chat.id == -1001403290431, ~F.forward_from, ~F.is_bot, ~(F.from_user.id == 391639940))
 async def mock_news(message: types.Message) -> None:
-    if np.random.binomial(1, 0.08):
+    if np.random.binomial(1, 0.03):
         msg = f'''{message.text}'''
         messages_to_mock.append(msg)
         # await bot.set_message_reaction(chat_id=message.chat.id, message_id=message.message_id,
         #                                reaction=[types.ReactionTypeEmoji(emoji='👀')])
 
-        if len(messages_to_mock) >= 3:
+        if len(messages_to_mock) == 3:
             request_text = '. '.join(messages_to_mock)
             try:
                 text: str = f'''Составь небольшую смешную выдуманную заметку в новостном ключе на основе следующего текста:

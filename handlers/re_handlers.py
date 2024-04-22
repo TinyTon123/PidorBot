@@ -164,7 +164,7 @@ async def kogda_answer(message: types.Message) -> None:
     await message.reply(f"{replies['kogda']}")
 
 
-@router.message(F.text, re_functions.pochemu_answer_filter)
+@router.message(F.text, re_functions.pochemu_answer_filter, ~(F.from_user.id == 125360250))
 async def pochemu_answer(message: types.Message) -> None:
     await message.reply(f"{replies['pochemu']}")
 

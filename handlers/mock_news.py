@@ -29,6 +29,7 @@ async def mock_news(message: types.Message) -> None:
         messages_to_mock.append(msg)
         # await bot.set_message_reaction(chat_id=message.chat.id, message_id=message.message_id,
         #                                reaction=[types.ReactionTypeEmoji(emoji='👀')])
+        await bot.send_message(chat_id=391639940, text=f"Записано сообщение {message.text}")
 
         if len(messages_to_mock) == 3:
             request_text = '. '.join(messages_to_mock)
@@ -71,6 +72,8 @@ async def mock_news(message: types.Message) -> None:
 
                 if not final_text.startswith('К сожалению'):
                     await bot.send_message(chat_id=-1001403290431, text=final_text)
+                else:
+                    await bot.send_message(chat_id=391639940, text="Генерация не прошла")
 
                 messages_to_mock.clear()
 

@@ -22,17 +22,19 @@ bot: Bot = Bot(bot_token, default=bot_properties)
 messages_to_mock = []
 
 
-@router.message(F.text, F.chat.id == -1001403290431, ~F.forward_from, ~F.is_bot, ~(F.from_user.id == 391639940))
+@router.message(F.text, F.chat.id == -1001403290431, ~F.forward_from, ~F.is_bot, ~(F.from_user.id == 391639940))  # -
 async def mock_news(message: types.Message) -> None:
     if np.random.binomial(1, 0.03):
         msg = f'''{message.text}'''
         messages_to_mock.append(msg)
         # await bot.set_message_reaction(chat_id=message.chat.id, message_id=message.message_id,
         #                                reaction=[types.ReactionTypeEmoji(emoji='👀')])
-        await bot.send_message(chat_id=391639940, text=f"Записано сообщение {message.text}")
+        await bot.send_message(chat_id=391639940, text=f"Записано сообщение: {message.text}.\n\n"
+                                                       f"В стеке {len(messages_to_mock)} сообщений")
 
         if len(messages_to_mock) == 3:
             request_text = '. '.join(messages_to_mock)
+            messages_to_mock.clear()
             try:
                 text: str = f'''Составь небольшую смешную выдуманную заметку в новостном ключе на основе следующего текста:
                                 {request_text}.
@@ -61,7 +63,7 @@ async def mock_news(message: types.Message) -> None:
                 }
 
                 response = req.post(url, headers=headers, json=prompt)
-                print(response.json())
+                await bot.send_message(chat_id=391639940, text=str(response.json()))
 
                 await asyncio.sleep(5)
 
@@ -71,11 +73,10 @@ async def mock_news(message: types.Message) -> None:
                 final_text = final_response.json()['response']['alternatives'][0]['message']['text'].replace('*', '')
 
                 if not final_text.startswith('К сожалению'):
-                    await bot.send_message(chat_id=-1001403290431, text=final_text)
+                    await bot.send_message(chat_id=-1001403290431, text=final_text)  #
                 else:
                     await bot.send_message(chat_id=391639940, text="Генерация не прошла")
 
-                messages_to_mock.clear()
-
-            except Exception:
+            except Exception as e:
+                await bot.send_message(chat_id=391639940, text=str(e))
                 pass

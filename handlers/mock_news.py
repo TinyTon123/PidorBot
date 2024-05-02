@@ -3,27 +3,15 @@ import numpy as np
 import requests
 import asyncio
 
-from aiogram import Router, F, types, Bot
-from aiogram.client.default import DefaultBotProperties
-from aiogram.enums import ParseMode
-
-from config_data.config import load_config, Config
+from aiogram import Router, F, types
 
 router: Router = Router()
-
-config: Config = load_config()
-ydx_cloud_api_key: str = config.api_config.yandex_api
-ydx_cloud_catalogue_id: str = config.api_config.yandex_catalogue_id
-bot_token: str = config.tg_bot.token
-
-bot_properties = DefaultBotProperties(parse_mode=ParseMode.HTML)
-bot: Bot = Bot(bot_token, default=bot_properties)
 
 messages_to_mock = []
 
 
-@router.message(F.text, F.chat.id == -1001403290431, ~F.forward_from, ~F.is_bot, ~(F.from_user.id == 391639940))  # -
-async def mock_news(message: types.Message) -> None:
+@router.message(F.text, F.chat.id == -1001403290431, ~F.forward_from, ~F.is_bot, ~(F.from_user.id == 391639940))
+async def mock_news(message: types.Message, bot, ydx_cloud_api_key, ydx_cloud_catalogue_id) -> None:
     if np.random.binomial(1, 0.03):
         msg = f'''{message.text}'''
         messages_to_mock.append(msg)
@@ -73,7 +61,7 @@ async def mock_news(message: types.Message) -> None:
                 final_text = final_response.json()['response']['alternatives'][0]['message']['text'].replace('*', '')
 
                 if not final_text.startswith('К сожалению'):
-                    await bot.send_message(chat_id=-1001403290431, text=final_text)  #
+                    await bot.send_message(chat_id=-1001403290431, text=final_text)
                 else:
                     await bot.send_message(chat_id=391639940, text="Генерация не прошла")
 

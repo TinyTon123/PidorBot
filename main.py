@@ -17,6 +17,8 @@ from recurring_tasks.its_wednesday import its_wednesday_my_dudes
 config: Config = load_config()
 bot_token: str = config.tg_bot.token
 ggl_api_key: str = config.api_config.google_api
+ydx_cloud_api_key: str = config.api_config.yandex_api
+ydx_cloud_catalogue_id: str = config.api_config.yandex_catalogue_id
 
 
 async def main() -> None:
@@ -24,8 +26,11 @@ async def main() -> None:
     dp.include_router(re_handlers.router)
     dp.include_router(chat_members_handlers.router)
     dp.include_router(mock_news.router)
-    bot_properties = DefaultBotProperties(parse_mode=ParseMode.HTML)
-    bot: Bot = Bot(bot_token, default=bot_properties)
+    bot: Bot = Bot(bot_token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+    dp.workflow_data.update({'bot': bot,
+                             'ggl_api_key': ggl_api_key,
+                             'ydx_cloud_api_key': ydx_cloud_api_key,
+                             'ydx_cloud_catalogue_id': ydx_cloud_catalogue_id})
 
     loop = asyncio.get_event_loop()
     loop.create_task(its_wednesday_my_dudes())

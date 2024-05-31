@@ -53,7 +53,7 @@ async def mock_news(message: types.Message, bot, ydx_cloud_api_key, ydx_cloud_ca
                 response = req.post(url, headers=headers, json=prompt)
                 await bot.send_message(chat_id=391639940, text=str(response.json()))
 
-                await asyncio.sleep(10)
+                await asyncio.sleep(60)
 
                 response_id = response.json()['id']
                 response_url = f"https://operation.api.cloud.yandex.net/operations/{response_id}"

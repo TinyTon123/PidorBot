@@ -12,7 +12,6 @@ from dictionary.replies import replies
 from handlers import re_handlers, chat_members_handlers, mock_news
 from recurring_tasks.its_wednesday import its_wednesday_my_dudes
 
-
 # Загружаем конфиг в переменную config
 config: Config = load_config()
 bot_token: str = config.tg_bot.token

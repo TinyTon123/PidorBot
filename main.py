@@ -22,7 +22,7 @@ ydx_cloud_catalogue_id: str = config.api_config.yandex_catalogue_id
 
 async def main() -> None:
     dp: Dispatcher = Dispatcher()
-    dp.include_router(re_handlers.router)
+    # dp.include_router(re_handlers.router)
     dp.include_router(chat_members_handlers.router)
     dp.include_router(mock_news.router)
     bot: Bot = Bot(bot_token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
